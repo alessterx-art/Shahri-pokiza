@@ -1,0 +1,6 @@
+{
+  "name": "Шаҳри Покиза — Низоми идоракунии партовҳои шаҳрӣ",
+  "description": "Низоми ҳушманди назорати тозагӣ ва партовҳо дар Тоҷикистон бо ёрии зеҳни сунъӣ ва камераҳои назоратӣ",
+  "requestFramePermissions": ["camera", "geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
