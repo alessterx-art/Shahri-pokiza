@@ -21,3 +21,46 @@ To stream from a physical municipal Dahua or Hikvision camera:
 1. Open camera configuration in the Admin Dashboard under "Камераҳо".
 2. Enter RTSP endpoint: `rtsp://admin:password@camera-ip:554/Streaming/Channels/101`.
 3. Set adapter to `ip_camera_rtsp`.
+
+## 3. GitHub Pages Deployment (Fixing Blank White Page)
+When deploying a Vite React app to GitHub Pages (`https://<username>.github.io/<repo-name>/`), the default root path `/` causes a blank white page because scripts look at `https://<username>.github.io/assets/...` instead of the repo folder.
+
+This project is configured with:
+- `base: './'` in `vite.config.ts` (relative asset paths for all scripts and styles).
+- Bundled image imports in `src/assets/images.ts` and static copies in `public/assets/images/`.
+- `public/404.html` SPA redirect handler.
+
+### Step-by-Step GitHub Pages Deployment:
+1. Push your code to your GitHub repository.
+2. In your repository on GitHub, go to **Settings > Pages**.
+3. Under **Build and deployment > Source**, choose:
+   - **GitHub Actions** (Recommended): Create `.github/workflows/deploy.yml` with:
+     ```yaml
+     name: Deploy to GitHub Pages
+     on:
+       push:
+         branches: [main]
+     permissions:
+       contents: read
+       pages: write
+       id-token: write
+     jobs:
+       deploy:
+         environment:
+           name: github-pages
+           url: ${{ steps.deployment.outputs.page_url }}
+         runs-on: ubuntu-latest
+         steps:
+           - uses: actions/checkout@v4
+           - uses: actions/setup-node@v4
+             with:
+               node-version: 20
+           - run: npm ci
+           - run: npm run build
+           - uses: actions/upload-pages-artifact@v3
+             with:
+               path: ./dist
+           - id: deployment
+             uses: actions/deploy-pages@v4
+     ```
+   - **OR Deploy branch**: Select `gh-pages` branch and folder `/ (root)`.

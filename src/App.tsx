@@ -34,6 +34,7 @@ import { WorkerDashboard } from '@/src/features/workers/WorkerDashboard';
 import { AdminDashboard } from '@/src/features/admin/AdminDashboard';
 import { EcoPointsPanel } from '@/src/features/eco-points/EcoPointsPanel';
 import { SettingsModal } from '@/src/components/SettingsModal';
+import { APP_IMAGES } from '@/src/assets/images';
 
 type MainTab = 'map' | 'admin' | 'workers' | 'cctv' | 'eco';
 
@@ -339,7 +340,7 @@ function MainApp() {
               {/* Right Column: Hero High-Fidelity City Photography (5 cols) */}
               <div className="lg:col-span-5 rounded-2xl overflow-hidden border border-[#1f3d32] bg-black relative min-h-[260px]">
                 <img
-                  src="/src/assets/images/hero_smart_city_khujand_1792953898192.jpg"
+                  src={APP_IMAGES.hero}
                   alt="Хуҷанд — Шаҳри тоза"
                   className="w-full h-full object-cover"
                 />

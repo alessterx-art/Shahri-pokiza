@@ -11,7 +11,7 @@ import type {
   AuditLog,
   UserRole,
 } from '@/src/types/database';
-
+import { APP_IMAGES } from '@/src/assets/images';
 // Initial Khujand Seed Data
 const INITIAL_PROFILES: Profile[] = [
   {
@@ -146,7 +146,7 @@ const INITIAL_INCIDENTS: Incident[] = [
     latitude: 40.2831,
     longitude: 69.6272,
     description: 'Қуттии партов пур шудааст ва партовҳо ба замин рехтаанд',
-    photograph_path: '/src/assets/images/waste_container_smart_sensor_1792953900323.jpg',
+    photograph_path: APP_IMAGES.container,
     ai_analysis_result: {
       category: 'overflowing_bin',
       categoryTajik: 'Қуттии аз ҳад пуршуда',
@@ -173,7 +173,7 @@ const INITIAL_INCIDENTS: Incident[] = [
     latitude: 40.2882,
     longitude: 69.6298,
     description: 'Партовҳои сохтмонӣ ва картон берун аз қуттӣ гузошта шудаанд',
-    photograph_path: '/src/assets/images/cctv_waste_monitoring_camera_1792953898985.jpg',
+    photograph_path: APP_IMAGES.cctv,
     ai_analysis_result: {
       category: 'garbage_outside',
       categoryTajik: 'Партов дар беруни қуттӣ',
@@ -199,7 +199,7 @@ const INITIAL_INCIDENTS: Incident[] = [
     latitude: 40.2862,
     longitude: 69.6228,
     description: 'Тозакунии саривақтӣ анҷом дода шуд',
-    photograph_path: '/src/assets/images/hero_smart_city_khujand_1792953898192.jpg',
+    photograph_path: APP_IMAGES.hero,
     ai_analysis_result: {
       category: 'litter_scattered',
       categoryTajik: 'Партовҳои пароканда',
@@ -266,7 +266,7 @@ const INITIAL_CAMERA_EVENTS: CameraEvent[] = [
     event_category: 'overflowing_bin',
     timestamp: new Date(Date.now() - 2 * 3600000 - 15 * 60000).toISOString(),
     incident_id: 'INC-2026-001',
-    evidence_image_path: '/src/assets/images/cctv_waste_monitoring_camera_1792953898985.jpg',
+    evidence_image_path: APP_IMAGES.cctv,
     review_status: 'confirmed',
     notes: 'Камераи №1 ҳолати пуршавии беш аз 90%-ро сабт намуд',
   },
@@ -276,7 +276,7 @@ const INITIAL_CAMERA_EVENTS: CameraEvent[] = [
     event_category: 'garbage_outside',
     timestamp: new Date(Date.now() - 50 * 60000).toISOString(),
     incident_id: 'INC-2026-002',
-    evidence_image_path: '/src/assets/images/waste_container_smart_sensor_1792953900323.jpg',
+    evidence_image_path: APP_IMAGES.container,
     review_status: 'pending_review',
     notes: 'Сабти ҳаракат дар назди қуттии партов ва партофтани қуттиҳои калон',
   },
@@ -288,7 +288,7 @@ const INITIAL_TASKS: CleanupTask[] = [
     incident_id: 'INC-2026-001',
     assigned_worker_id: 'b0000000-0000-0000-0000-000000000002',
     status: 'in_progress',
-    before_photo_path: '/src/assets/images/waste_container_smart_sensor_1792953900323.jpg',
+    before_photo_path: APP_IMAGES.container,
     after_photo_path: null,
     worker_notes: 'Бригада ба ҷойи ҳодиса ҳозир шуд, холӣ кардани қуттӣ оғоз гардид',
     completed_at: null,
@@ -299,8 +299,8 @@ const INITIAL_TASKS: CleanupTask[] = [
     incident_id: 'INC-2026-003',
     assigned_worker_id: 'b0000000-0000-0000-0000-000000000002',
     status: 'completed',
-    before_photo_path: '/src/assets/images/waste_container_smart_sensor_1792953900323.jpg',
-    after_photo_path: '/src/assets/images/hero_smart_city_khujand_1792953898192.jpg',
+    before_photo_path: APP_IMAGES.container,
+    after_photo_path: APP_IMAGES.hero,
     worker_notes: 'Атрофи гулгашт пурра рӯбучин ва тоза карда шуд',
     completed_at: new Date(Date.now() - 18 * 3600000).toISOString(),
     created_at: new Date(Date.now() - 24 * 3600000).toISOString(),

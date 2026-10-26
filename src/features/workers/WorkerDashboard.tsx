@@ -14,6 +14,7 @@ import {
 import type { CleanupTask, Incident } from '@/src/types/database';
 import { dbRepository } from '@/src/lib/supabase/client';
 import { useAuth } from '@/src/features/auth/AuthContext';
+import { APP_IMAGES } from '@/src/assets/images';
 
 export const WorkerDashboard: React.FC = () => {
   const { currentUser } = useAuth();
@@ -222,7 +223,7 @@ export const WorkerDashboard: React.FC = () => {
                       src={
                         selectedTask.before_photo_path ||
                         currentIncident.photograph_path ||
-                        '/src/assets/images/waste_container_smart_sensor_1792953900323.jpg'
+                        APP_IMAGES.container
                       }
                       alt="Пеш аз тозакунӣ"
                       className="w-full h-full object-cover"
@@ -279,7 +280,7 @@ export const WorkerDashboard: React.FC = () => {
                       <button
                         type="button"
                         onClick={() =>
-                          setAfterPhoto('/src/assets/images/hero_smart_city_khujand_1792953898192.jpg')
+                          setAfterPhoto(APP_IMAGES.hero)
                         }
                         className="mt-2 text-[10px] text-slate-400 hover:text-emerald-300 underline"
                       >
