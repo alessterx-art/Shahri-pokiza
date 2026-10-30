@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -45,7 +45,10 @@ jobs:
       - name: Build application
         run: npm run build
         env:
-          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          BASE_PATH: ${{ steps.pages.outputs.base_path || '/Shahri-pokiza/' }}
+
+      - name: Ensure .nojekyll in dist
+        run: touch ./dist/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -55,3 +58,11 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Deploy to gh-pages branch (fallback)
+        uses: JamesIves/github-pages-deploy-action@v4
+        continue-on-error: true
+        with:
+          branch: gh-pages
+          folder: dist
+          clean: true

@@ -3,9 +3,13 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
 
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
   const rawBase = process.env.BASE_PATH;
-  const base = rawBase ? (rawBase.endsWith('/') ? rawBase : `${rawBase}/`) : './';
+  // If BASE_PATH is provided (e.g. by GitHub Actions configure-pages), use it.
+  // Otherwise in production default to /Shahri-pokiza/ for GitHub Pages.
+  // In development, default to / for local preview in AI Studio.
+  const defaultBase = mode === 'production' ? '/Shahri-pokiza/' : '/';
+  const base = rawBase ? (rawBase.endsWith('/') ? rawBase : `${rawBase}/`) : defaultBase;
 
   return {
     base,
